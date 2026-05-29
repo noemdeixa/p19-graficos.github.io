@@ -1,0 +1,94 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Pocholo</title>
+    <link rel="icon" type="image/x-icon" href="./nico.webp">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div id="questions-container"></div>
+    <div id="score-display"></div>
+    <button id="submit-btn" onclick="checkAnswers()">Check all answers</button>
+    
+</body>
+
+<script>
+    async function loadRandomQuestions(n) {
+        try {
+            const response = await fetch('./questions.json');
+
+            const allQuestions = await response.json();
+
+            // Pick random number of questions
+            const randomQuestion = () => allQuestions[Math.floor(Math.random() * allQuestions.length)];
+
+            // Generate n questions
+            for (let i = 0; i < n; i++) {
+                const question = randomQuestion();
+                const questionElement = document.createElement("div");
+
+                questionElement.innerHTML = `
+                    <fieldset data-correct_answer="${question.correct_answer}">
+                    <legend>${question.id}</legend>
+                    <div class="question-block">${question.q_text}</div>
+                    ${['a', 'b', 'c', 'd'].map(option => `<div class="answer-option"><input type="radio" id="${question.id}-${option}" name="answers-${question.id}" value="${option}"><label for="${question.id}-${option}">${question['answer_' + option]}</label></div>`).join('\n')}
+                    </fieldset>
+                `;
+                document.getElementById("questions-container").appendChild(questionElement);
+            }
+        } catch (e) {
+            console.error("Could not fetch questions", e);
+        }
+
+        
+    }
+
+    function checkAnswers() {
+        var correct_n = 0;
+        document.querySelectorAll("fieldset").forEach(f => {
+            const correct = f.dataset.correct_answer;
+            const selected_node = f.querySelector('input:checked');
+            
+            f.classList.remove("correct", "incorrect", "unselected");
+            if (selected_node == null) {
+                f.classList.add("unselected");
+            }
+            else {
+                if (correct == "null") {
+                    f.classList.add("impugnada")
+                }
+                else {
+                    const selected = selected_node.value;
+
+                    f.querySelectorAll("input").forEach(input => {
+                        input.classList.remove("correct", "incorrect");
+
+                        if (input.value === correct) {
+                            input.classList.add("correct");
+                        }
+                    });
+
+                    if (correct !== selected) {
+                        selected_node.classList.add("incorrect");
+                        f.classList.add("incorrect");
+                    }
+                    else {
+                        f.classList.add("correct");
+                        correct_n++;
+                    }
+                }
+            }
+
+            const total = document.querySelectorAll("fieldset:not(.impugnada)").length;
+            const score = correct_n / total;
+
+            document.querySelector("#score-display").innerHTML = `
+                <b>Correct answers: ${correct_n} / ${total} ~ (${Math.round(score*10 * 100) / 100} / 10)</b>
+            `
+
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => loadRandomQuestions(20));
+    
+</script>

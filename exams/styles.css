@@ -1,0 +1,50 @@
+img {
+    max-width: 600px;
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.question-block {
+    margin-bottom: 20px;
+}
+
+.answer-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.answer-option input[type="radio"] {
+    flex-shrink: 0;
+    margin-top: 4px;
+}
+
+fieldset {
+    margin-bottom: 20px;
+}
+
+fieldset.correct {
+    border-color: greenyellow;
+}
+
+fieldset.incorrect {
+    border-color: red;
+}
+
+fieldset.unselected {
+    background-color: rgb(212, 212, 212);
+}
+
+fieldset.impugnada {
+    border-color: #b996da;
+}
+
+fieldset.impugnada::before {
+    content: "(Impugnada)";
+}
+
+#score-display {
+    margin-bottom: 20px;
+}
