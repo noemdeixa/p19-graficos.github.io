@@ -1,8 +1,16 @@
 img {
-    max-width: 600px;
+    max-width: 1080px;
     display: block;
     margin-top: 20px;
     margin-bottom: 20px;
+}
+
+#generator-container div {
+    margin-bottom: 5px;
+}
+
+#generator-container div input {
+    margin-right: 5px;
 }
 
 .question-block {
@@ -19,6 +27,14 @@ img {
 .answer-option input[type="radio"] {
     flex-shrink: 0;
     margin-top: 4px;
+}
+
+.answer-option.correct {
+    background-color: #c3ffc380;
+}
+
+.answer-option.incorrect {
+    background-color: #ff98983d;
 }
 
 fieldset {

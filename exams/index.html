@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <title>Pocholo</title>
@@ -8,24 +9,59 @@
 <body>
     <div id="questions-container"></div>
     <div id="score-display"></div>
-    <button id="submit-btn" onclick="checkAnswers()">Check all answers</button>
+
+    <div id="generator-container">
+        <div><input type="number" name="seed" id="generator-seed" value="0" min="0"/><label for="generator-seed">Seed (Si generas preguntas al azar con la misma seed siempre te saldrán las mismas)</label></div>
+        <div><input type="number" id="generator-questions" value="20" min="0"/><label for="generator-questions">Number of questions</label></div>
+        <div><input type="button" id="generator-button" value="Generate" onclick="generateQuestions()"/></div>
+    </div>
+    
+    <button id="check-answers-button" onclick="checkAnswers()" hidden>Check all answers</button>
     
 </body>
 
 <script>
-    async function loadRandomQuestions(n) {
+    function splitmix32(a) {
+        return function() {
+        a |= 0;
+        a = a + 0x9e3779b9 | 0;
+        let t = a ^ a >>> 16;
+        t = Math.imul(t, 0x21f0aaad);
+        t = t ^ t >>> 15;
+        t = Math.imul(t, 0x735a2d97);
+        return ((t = t ^ t >>> 15) >>> 0) / 4294967296;
+        }
+    }
+
+    function shuffleArray(array, randomGen) {
+        for (let i = array.length - 1; i > 0; i--) {
+            // Pick a random index from 0 to i
+            const j = Math.floor(randomGen() * (i + 1));
+            // Swap array[i] and array[j]
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
+    async function loadRandomQuestions(n, seed) {
         try {
-            const response = await fetch('./questions.json');
+            // Random timestamp so it doesn't cache it
+            const response = await fetch(`./questions.json`);
 
             const allQuestions = await response.json();
 
-            // Pick random number of questions
-            const randomQuestion = () => allQuestions[Math.floor(Math.random() * allQuestions.length)];
+            // Shuffle and slice
+            const randomGen = splitmix32(seed);
+            let randomQuestions = shuffleArray(allQuestions, randomGen);
 
+            randomQuestions = randomQuestions.slice(0, n);
+            randomQuestions.sort((a, b) => a.id > b.id);
+            
             // Generate n questions
-            for (let i = 0; i < n; i++) {
-                const question = randomQuestion();
+            for (let i = 0; i < randomQuestions.length; i++) {
+                const question = randomQuestions[i];
                 const questionElement = document.createElement("div");
+                questionElement.className = "question";
 
                 questionElement.innerHTML = `
                     <fieldset data-correct_answer="${question.correct_answer}">
@@ -39,46 +75,56 @@
         } catch (e) {
             console.error("Could not fetch questions", e);
         }
-
-        
     }
 
     function checkAnswers() {
         var correct_n = 0;
-        document.querySelectorAll("fieldset").forEach(f => {
-            const correct = f.dataset.correct_answer;
-            const selected_node = f.querySelector('input:checked');
+        document.querySelectorAll("fieldset").forEach(fieldset => {
+            const correct_answer = fieldset.dataset.correct_answer;
+            const selected_div = fieldset.querySelector('input:checked')?.parentNode;
             
-            f.classList.remove("correct", "incorrect", "unselected");
-            if (selected_node == null) {
-                f.classList.add("unselected");
+            // Reset
+            fieldset.classList.remove("correct", "incorrect", "unselected");
+
+            // If no selected answer
+            if (selected_div == null) {
+                fieldset.classList.add("unselected");
             }
             else {
-                if (correct == "null") {
-                    f.classList.add("impugnada")
+                // If no correct answer
+                if (correct_answer == "null") {
+                    fieldset.classList.add("impugnada")
                 }
                 else {
-                    const selected = selected_node.value;
+                    const selected_answer = selected_div.querySelector("input").value;
 
-                    f.querySelectorAll("input").forEach(input => {
-                        input.classList.remove("correct", "incorrect");
-
-                        if (input.value === correct) {
-                            input.classList.add("correct");
+                    // Mark the correct answer
+                    fieldset.querySelectorAll("div.answer-option").forEach(answerNode => {
+                        // Reset
+                        answerNode.classList.remove("correct", "incorrect");
+                        
+                        // Check
+                        const current_answer = answerNode.querySelector("input").value;
+                        if (current_answer == correct_answer) {
+                            answerNode.classList.add("correct");
                         }
                     });
 
-                    if (correct !== selected) {
-                        selected_node.classList.add("incorrect");
-                        f.classList.add("incorrect");
+                    // If the selected is incorrect mark it as such
+                    if (selected_answer !== correct_answer) {
+                        selected_div.classList.add("incorrect");
+                        fieldset.classList.add("incorrect");
                     }
+
+                    // Otherwise it has  already been marked as correct in the previous loop
                     else {
-                        f.classList.add("correct");
+                        fieldset.classList.add("correct");
                         correct_n++;
                     }
                 }
             }
 
+            // Compute final score
             const total = document.querySelectorAll("fieldset:not(.impugnada)").length;
             const score = correct_n / total;
 
@@ -89,6 +135,28 @@
         });
     }
 
-    document.addEventListener("DOMContentLoaded", () => loadRandomQuestions(20));
+    function generateQuestions() {
+        // Get parameters
+        const seed = document.getElementById("generator-seed").value;
+        const n_questions = document.getElementById("generator-questions").value;
+
+        // Remove any previous questions
+        const q_container = document.getElementById("questions-container")
+        while (q_container.lastChild) q_container.removeChild(q_container.lastChild);
+
+        // Generate new questions
+        loadRandomQuestions(n_questions, seed);
+
+        // Unhide the check answers button
+        document.getElementById("check-answers-button").hidden = false;
+
+        // Reset seed
+        fillSeed();
+    }
     
+    function fillSeed() {
+        document.getElementById("generator-seed").value = `${(Math.random()*2**32)>>>0}`;
+    }
+    // Fill seed input with a random number
+    document.addEventListener("DOMContentLoaded", fillSeed);
 </script>
