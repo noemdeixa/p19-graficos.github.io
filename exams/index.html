@@ -151,6 +151,18 @@
         document.getElementById("check-answers-button").hidden = false;
 
         // Reset seed
+        let seed_reminder = document.getElementById("seed-reminder");
+        if (!seed_reminder) {
+            seed_reminder = document.createElement("div");
+            seed_reminder.id = "seed-reminder";
+            seed_reminder.innerHTML = `Previous seed: <b id="previous-seed">${seed}</b>`;
+            const seed_node = document.getElementById("generator-seed");
+            seed_node.parentNode.insertBefore(seed_reminder, seed_node);
+        }
+        else {
+            document.getElementById("previous-seed").innerHTML = seed;
+        }
+
         fillSeed();
     }
     
