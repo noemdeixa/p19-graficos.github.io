@@ -943,7 +943,7 @@
     "answer_d": "Señal de inicio de peligro en trinchera, terraplén o zona inundable, y se clasifica como una señal fija fundamental.",
     "id": "020919-B-Q01",
     "source": "020919-B",
-    "correct_answer": "d"
+    "correct_answer": "a"
   },
   {
     "q_number": 2,
@@ -965,7 +965,7 @@
     "answer_d": "Anuncio de velocidad máxima por paso a nivel y ordena no exceder la velocidade indicada al paso por el PN situado a continuación y hasta que el último vehículo haya rebasado el mismo.",
     "id": "020919-B-Q03",
     "source": "020919-B",
-    "correct_answer": "d"
+    "correct_answer": "c"
   },
   {
     "q_number": 4,
@@ -976,7 +976,7 @@
     "answer_d": "La combinación de estas señales no existe.",
     "id": "020919-B-Q04",
     "source": "020919-B",
-    "correct_answer": "a"
+    "correct_answer": "b"
   },
   {
     "q_number": 5,
@@ -998,7 +998,7 @@
     "answer_d": "El Maquinista no realizará ninguna acción al respecto.",
     "id": "020919-B-Q06",
     "source": "020919-B",
-    "correct_answer": "b"
+    "correct_answer": "d"
   },
   {
     "q_number": 7,
@@ -1042,7 +1042,7 @@
     "answer_d": "Cumplirá la limitación temporal de velocidad máxima conforme al documento en el que se da a conocer su instalación.",
     "id": "020919-B-Q10",
     "source": "020919-B",
-    "correct_answer": "c"
+    "correct_answer": "d"
   },
   {
     "q_number": 11,
@@ -1053,7 +1053,7 @@
     "answer_d": "160 km/h",
     "id": "020919-B-Q11",
     "source": "020919-B",
-    "correct_answer": "d"
+    "correct_answer": "c"
   },
   {
     "q_number": 12,
@@ -1064,7 +1064,7 @@
     "answer_d": "Esta secuencia de señales no impone restricción de velocidad máxima al paso por las agujas situadas a continuación de la señal de entrada.",
     "id": "020919-B-Q12",
     "source": "020919-B",
-    "correct_answer": "c"
+    "correct_answer": "b"
   },
   {
     "q_number": 13,
@@ -1075,7 +1075,7 @@
     "answer_d": "Las señales representadas en D.",
     "id": "020919-B-Q13",
     "source": "020919-B",
-    "correct_answer": "b"
+    "correct_answer": "d"
   },
   {
     "q_number": 14,
@@ -1108,7 +1108,7 @@
     "answer_d": "Consideraré la señal avanzada como si diera anuncio de parada. Efectuaaré parada ante la señal de entrada, solicitando su rebase al Responsable de circulación de la estación. Si se presenta la señal de paso, continuaré la marcha normalmente si nada se opone.",
     "id": "020919-B-Q16",
     "source": "020919-B",
-    "correct_answer": "a"
+    "correct_answer": "b"
   },
   {
     "q_number": 17,
@@ -1141,7 +1141,7 @@
     "answer_d": "En la Estación 1 con la señal de marche el tren y la orden de la señal de salida permitiendo el paso. En la Estación 2 con la señal de paso. En la Estación 3 con la orden de la señal de salida.",
     "id": "020919-B-Q19",
     "source": "020919-B",
-    "correct_answer": "c"
+    "correct_answer": "a"
   },
   {
     "q_number": 20,
@@ -1152,7 +1152,7 @@
     "answer_d": "Como si hubiera encontrado una señal de anuncio de parada en el mismo lugar questa situada la señal que ordena vía libre condicional de la vía normal, atendiendo a lo que ordene la señal de retroceso.",
     "id": "020919-B-Q20",
     "source": "020919-B",
-    "correct_answer": "a"
+    "correct_answer": "c"
   },
   {
     "q_number": 21,
@@ -1163,7 +1163,7 @@
     "answer_d": "Solicitará instrucciones del Responsable de Circulación del CTC.",
     "id": "020919-B-Q21",
     "source": "020919-B",
-    "correct_answer": "b"
+    "correct_answer": "c"
   },
   {
     "q_number": 22,
@@ -1174,7 +1174,7 @@
     "answer_d": "No.",
     "id": "020919-B-Q22",
     "source": "020919-B",
-    "correct_answer": "d"
+    "correct_answer": "a"
   },
   {
     "q_number": 23,
@@ -1185,7 +1185,7 @@
     "answer_d": "En una línea con CTC, siempre las estaciones están gobernadas desde el CTC.",
     "id": "020919-B-Q23",
     "source": "020919-B",
-    "correct_answer": "a"
+    "correct_answer": "b"
   },
   {
     "q_number": 24,
@@ -1196,7 +1196,7 @@
     "answer_d": "En cualquier bloqueo de vía doble.",
     "id": "020919-B-Q24",
     "source": "020919-B",
-    "correct_answer": "c"
+    "correct_answer": "a"
   },
   {
     "q_number": 25,
@@ -1240,7 +1240,7 @@
     "answer_d": "Se establecerá el BT.",
     "id": "020919-B-Q28",
     "source": "020919-B",
-    "correct_answer": "b"
+    "correct_answer": "d"
   },
   {
     "q_number": 29,
@@ -1262,7 +1262,7 @@
     "answer_d": "Que la estación 2 no dispone de Responsable de Circulación y no intervenie en el bloqueo, que la velocidad máxima será 120 km/h y mantendré el equipo embarcado de ASFA digital en modo CONV.",
     "id": "020919-B-Q30",
     "source": "020919-B",
-    "correct_answer": "a"
+    "correct_answer": "d"
   },
   {
     "q_number": 31,
@@ -1273,7 +1273,7 @@
     "answer_d": "Directas, desviadas.",
     "id": "020919-B-Q31",
     "source": "020919-B",
-    "correct_answer": "b"
+    "correct_answer": "c"
   },
   {
     "q_number": 32,
@@ -1284,7 +1284,7 @@
     "answer_d": "La orden de la señal de salida que no ordene parada.",
     "id": "020919-B-Q32",
     "source": "020919-B",
-    "correct_answer": "d"
+    "correct_answer": "a"
   },
   {
     "q_number": 33,
@@ -1295,7 +1295,7 @@
     "answer_d": "Velocidad Máxima es la que el tren no debe exceder, independientemennde del tipo de conducción utilizando. Se admite un margen de tolerancia de hasta (5 km/h) (sobre lo observado por el Maquinista en su lecto de velocidad), durante notas más de 20 segundos, por encima del cual se consideran rebase de la velocidad máxima.",
     "id": "020919-B-Q33",
     "source": "020919-B",
-    "correct_answer": "c"
+    "correct_answer": "d"
   },
   {
     "q_number": 34,
@@ -1317,7 +1317,7 @@
     "answer_d": "V",
     "id": "020919-B-Q35",
     "source": "020919-B",
-    "correct_answer": "d"
+    "correct_answer": "b"
   },
   {
     "q_number": 36,
@@ -1339,7 +1339,7 @@
     "answer_d": "El que no efectúa parada comercial.",
     "id": "020919-B-Q37",
     "source": "020919-B",
-    "correct_answer": "c"
+    "correct_answer": "b"
   },
   {
     "q_number": 38,
@@ -1350,7 +1350,7 @@
     "answer_d": "Sí, si lo autoriza el PM a solicitud de la EF.",
     "id": "020919-B-Q38",
     "source": "020919-B",
-    "correct_answer": "b"
+    "correct_answer": "a"
   },
   {
     "q_number": 39,
@@ -1361,7 +1361,7 @@
     "answer_d": "Señal de entrada interior.",
     "id": "020919-B-Q39",
     "source": "020919-B",
-    "correct_answer": "a"
+    "correct_answer": "b"
   },
   {
     "q_number": 40,
@@ -1438,7 +1438,7 @@
     "answer_d": "40 km/h.",
     "id": "020919-B-Q46",
     "source": "020919-B",
-    "correct_answer": "d"
+    "correct_answer": "c"
   },
   {
     "q_number": 47,
@@ -1449,7 +1449,7 @@
     "answer_d": "En líneas dotadas de BA, considerará como existentes todas las señales.",
     "id": "020919-B-Q47",
     "source": "020919-B",
-    "correct_answer": "a"
+    "correct_answer": "c"
   },
   {
     "q_number": 48,
@@ -1471,7 +1471,7 @@
     "answer_d": "Sí, siempre y cuando el Maquinista que dirija la marcha disponga también se silbato y el trayecto entre B y C está dotado de BA.",
     "id": "020919-B-Q49",
     "source": "020919-B",
-    "correct_answer": "d"
+    "correct_answer": "c"
   },
   {
     "q_number": 50,
@@ -1482,7 +1482,7 @@
     "answer_d": "Detendrá la marcha del tren, se comunicará con su empresa ferroviaria y esperará la llegada de un segundo agente habilitado en cabina para poder continuar la marcha hasta la primera estación.",
     "id": "020919-B-Q50",
     "source": "020919-B",
-    "correct_answer": "a"
+    "correct_answer": "b"
   },
   {
     "q_number": 51,
@@ -1493,7 +1493,7 @@
     "answer_d": "El tren continuará en Nivel 1 y modo FS, con una nueva MA hasta el DP (punto de peligro).",
     "id": "020919-B-Q51",
     "source": "020919-B",
-    "correct_answer": "d"
+    "correct_answer": "c"
   },
   {
     "q_number": 52,
@@ -1504,7 +1504,7 @@
     "answer_d": "Estamos superando la velocidad límite, pero sin llegar a la velocidad o curva de intervención.",
     "id": "020919-B-Q52",
     "source": "020919-B",
-    "correct_answer": "c"
+    "correct_answer": "d"
   },
   {
     "q_number": 53,
@@ -1526,7 +1526,7 @@
     "answer_d": "No se puede accionar dicho pulsador. Será la lectura de una nueva baliza la que nos libere el control.",
     "id": "020919-B-Q54",
     "source": "020919-B",
-    "correct_answer": "b"
+    "correct_answer": "a"
   },
   {
     "q_number": 55,
@@ -1537,7 +1537,7 @@
     "answer_d": "Sistema de bloqueo de puertas.",
     "id": "020919-B-Q55",
     "source": "020919-B",
-    "correct_answer": "a"
+    "correct_answer": "d"
   },
   {
     "q_number": 56,
@@ -1548,7 +1548,7 @@
     "answer_d": "140 km/h.",
     "id": "020919-B-Q56",
     "source": "020919-B",
-    "correct_answer": "c"
+    "correct_answer": "a"
   },
   {
     "q_number": 57,
@@ -1559,7 +1559,7 @@
     "answer_d": "Efectuará detención inmediata.",
     "id": "020919-B-Q57",
     "source": "020919-B",
-    "correct_answer": "b"
+    "correct_answer": "c"
   },
   {
     "q_number": 58,
@@ -1592,7 +1592,7 @@
     "answer_d": "La posición es incorrecta, se denomina cambiador de potencia y sirve para ajustará la rapidez con la que actúa el freno automático.",
     "id": "020919-B-Q60",
     "source": "020919-B",
-    "correct_answer": "d"
+    "correct_answer": "a"
   },
   {
     "q_number": 61,
@@ -1603,7 +1603,7 @@
     "answer_d": "Permite un pilotaje estable del pistón de pesaje en la válvula relé variable.",
     "id": "020919-B-Q61",
     "source": "020919-B",
-    "correct_answer": "d"
+    "correct_answer": "c"
   },
   {
     "q_number": 62,
@@ -1625,7 +1625,7 @@
     "answer_d": "Alimenta al cilindro de freno a través del distribuidor.",
     "id": "020919-B-Q63",
     "source": "020919-B",
-    "correct_answer": "c"
+    "correct_answer": "a"
   },
   {
     "q_number": 64,
@@ -1636,7 +1636,7 @@
     "answer_d": "Mercancías.",
     "id": "020919-B-Q64",
     "source": "020919-B",
-    "correct_answer": "c"
+    "correct_answer": "a"
   },
   {
     "q_number": 65,
@@ -1647,7 +1647,7 @@
     "answer_d": "Las bieletas no transmiten ningún esfuerzo de tracción.",
     "id": "020919-B-Q65",
     "source": "020919-B",
-    "correct_answer": "d"
+    "correct_answer": "c"
   },
   {
     "q_number": 66,
@@ -1658,7 +1658,7 @@
     "answer_d": "Se debe disponer en los vehículos ferroviarios de corriente alterna y multitesión.",
     "id": "020919-B-Q66",
     "source": "020919-B",
-    "correct_answer": "b"
+    "correct_answer": "d"
   },
   {
     "q_number": 67,
@@ -1669,7 +1669,7 @@
     "answer_d": "No se producen en la tracción.",
     "id": "020919-B-Q67",
     "source": "020919-B",
-    "correct_answer": "a"
+    "correct_answer": "c"
   },
   {
     "q_number": 68,
@@ -1691,7 +1691,7 @@
     "answer_d": "Primero abriendo el disyuntor y posteriormente subiendo el pantógrafo.",
     "id": "020919-B-Q69",
     "source": "020919-B",
-    "correct_answer": "a"
+    "correct_answer": "b"
   },
   {
     "q_number": 70,
@@ -1713,7 +1713,7 @@
     "answer_d": "En el perno del pistón.",
     "id": "020919-B-Q71",
     "source": "020919-B",
-    "correct_answer": "b"
+    "correct_answer": "c"
   },
   {
     "q_number": 72,
@@ -1724,7 +1724,7 @@
     "answer_d": "2000 veces.",
     "id": "020919-B-Q72",
     "source": "020919-B",
-    "correct_answer": "c"
+    "correct_answer": "b"
   },
   {
     "q_number": 73,
@@ -1746,7 +1746,7 @@
     "answer_d": "Admisión.",
     "id": "020919-B-Q74",
     "source": "020919-B",
-    "correct_answer": "b"
+    "correct_answer": "c"
   },
   {
     "q_number": 75,
@@ -1779,7 +1779,7 @@
     "answer_d": "Contracarril.",
     "id": "020919-B-Q77",
     "source": "020919-B",
-    "correct_answer": "a"
+    "correct_answer": "d"
   },
   {
     "q_number": 78,
@@ -1801,7 +1801,7 @@
     "answer_d": "La etiqueta D.",
     "id": "020919-B-Q79",
     "source": "020919-B",
-    "correct_answer": "d"
+    "correct_answer": "b"
   },
   {
     "q_number": 80,
@@ -1812,7 +1812,7 @@
     "answer_d": "Este cuadro no tiene nada que ver con la velocidad máxima del vehículo.",
     "id": "020919-B-Q80",
     "source": "020919-B",
-    "correct_answer": "c"
+    "correct_answer": "b"
   },
   {
     "q_number": 81,
@@ -1823,7 +1823,7 @@
     "answer_d": "Consisten en tres pantallas equiespaciadas, en forma de aspas de color negro sobre fondo blanco.",
     "id": "020919-B-Q81",
     "source": "020919-B",
-    "correct_answer": "b"
+    "correct_answer": "d"
   },
   {
     "q_number": 82,
@@ -1834,7 +1834,7 @@
     "answer_d": "Troceador chopper.",
     "id": "020919-B-Q82",
     "source": "020919-B",
-    "correct_answer": "b"
+    "correct_answer": "a"
   },
   {
     "q_number": 83,
@@ -1845,7 +1845,7 @@
     "answer_d": "La velocidad máxima admisible.",
     "id": "020919-B-Q83",
     "source": "020919-B",
-    "correct_answer": "d"
+    "correct_answer": "c"
   },
   {
     "q_number": 84,
@@ -1856,7 +1856,7 @@
     "answer_d": "1877",
     "id": "020919-B-Q84",
     "source": "020919-B",
-    "correct_answer": "b"
+    "correct_answer": "c"
   },
   {
     "q_number": 85,
