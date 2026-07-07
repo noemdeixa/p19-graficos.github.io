@@ -2909,7 +2909,7 @@
     "answer_a": "Para suprimir la parada, con la señal de paso presentada con los tres elementos que la componen (linterna con luz verde, gorra roja y posición del Responsable de Circulación).",
     "answer_b": "Con la señal de marche el tren presentada con los cuatro elementos que la componen (linterna con luz verde, gorra roja, posición del Responsable de Circulación y toque del silbato de mano).",
     "answer_c": "Mediante la notificación \"marche el tren de vía\", cursada por radiotelefonía.",
-    "answer_d": "Con la señal de marche el tren presentada con los cuatro elementos que la componen (banderín rojo enrollado, gorra roja, posición del Responsable de Circulación y toque del silbatto de mano).",
+    "answer_d": "Con la señal de marche el tren presentada con los cuatro elementos que la componen (banderín rojo enrollado, gorra roja, posición del Responsable de Circulación y toque del silbato de mano).",
     "id": "030522-A-Q10",
     "source": "030522-A",
     "correct_answer": "b"
@@ -5919,7 +5919,7 @@
   },
   {
     "q_number": 29,
-    "q_text": "¿Cómo serán transmitidas al Maquinista entrante las órdenes e informaciones comunicadas por BQI y pendientes de cumplimentar, en la transmisión del servicio entre maquinistas?",
+    "q_text": "¿Cómo serán transmitidas al Maquinista entrante las órdenes e informaciones comunicadas por BOI y pendientes de cumplimentar, en la transmisión del servicio entre maquinistas?",
     "answer_a": "Serán comunicadas al Maquinista entrante por el Responsable de Circulación de la estación dónde se realiza el relevo.",
     "answer_b": "Serán transmitidas entre los Maquinistas saliente/entrante, haciendo referencia a las mismas con la mención \"Pendiente de cumplimentar\".",
     "answer_c": "Serán transmitidas al Maquinista entrante por su EF.",
@@ -5941,7 +5941,7 @@
   },
   {
     "q_number": 31,
-    "q_text": "Un tren directo Tipo 1604 circula entre las Estaciones A, B y C por un tramo de BAB con CTC. Según el Libro de itinerarios del Maquinista, la velocidad máxima entre las estaciones A y C es de 155 Km/h. En su recorrido, encuentra la señal de entrada de la Estación B en indicación de anuncio de parada y la señal de salida permitiendo el paso (no ordena parada). Únicamente con la información facilitada, determinar si existe alguna restricción de velocidad al paso por las agujas situadas a continuación de la señal de salida (agujas de salida) de la Estación B.",
+    "q_text": "Un tren directo Tipo 160A circula entre las Estaciones A, B y C por un tramo de BAB con CTC. Según el Libro de itinerarios del Maquinista, la velocidad máxima entre las estaciones A y C es de 155 Km/h. En su recorrido, encuentra la señal de entrada de la Estación B en indicación de anuncio de parada y la señal de salida permitiendo el paso (no ordena parada). Únicamente con la información facilitada, determinar si existe alguna restricción de velocidad al paso por las agujas situadas a continuación de la señal de salida (agujas de salida) de la Estación B.",
     "answer_a": "No existe restricción de velocidad.",
     "answer_b": "Pasará como máximo a 160 Km/h.",
     "answer_c": "Pasará como máximo a 30 Km/h.",
@@ -6700,7 +6700,7 @@
   },
   {
     "q_number": 15,
-    "q_text": "El Maquinista de un tren Inclía el servicio en una estación desde una vía que no tiene señal de salida. Si la estación está integrada en una línea de BAD con CTC, y se encuentra en MC, ¿cuál de las siguientes afirmaciones es correcta?",
+    "q_text": "El Maquinista de un tren inicia el servicio en una estación desde una vía que no tiene señal de salida. Si la estación está integrada en una línea de BAD con CTC, y se encuentra en MC, ¿cuál de las siguientes afirmaciones es correcta?",
     "answer_a": "Sólo estaría permitida la expedición del tren desde dicha vía si la estación se encontrara en ML.",
     "answer_b": "Se le notificará circular con marcha a la vista hasta la primera señal de bloqueo.",
     "answer_c": "Se le notificará circular con marcha de maniobras hasta la primera señal de bloqueo.",
@@ -7285,8 +7285,8 @@
     "q_number": 68,
     "q_text": "En el motor diésel:",
     "answer_a": "Se quema el combustible en el interior del cilindro, inflamandolo por medio del calor producido por la compresión del aire.",
-    "answer_b": "Se quema el combustible en el interior del cilindro, inflamandolo por medo de una chispa eléctrica.",
-    "answer_c": "Se quema el combustible en el interior del cilindro, inflamandolo por medi del calor producido por la combustión del aire.",
+    "answer_b": "Se quema el combustible en el interior del cilindro, inflamandolo por medio de una chispa eléctrica.",
+    "answer_c": "Se quema el combustible en el interior del cilindro, inflamandolo por medio del calor producido por la combustión del aire.",
     "answer_d": "El ciclo termodinámico siempre es de cuatro tiempos.",
     "id": "170221-A-Q68",
     "source": "170221-A",
@@ -7844,7 +7844,7 @@
   },
   {
     "q_number": 34,
-    "q_text": "Un tren convencional de viajeros en ancho 1 668 mm:",
+    "q_text": "Un tren convencional de viajeros en ancho 1668mm:",
     "answer_a": "No tendrá limitación en el número de coches que puede remolcar.",
     "answer_b": "No podrá remolcar una locomotora.",
     "answer_c": "No excederá la velocidad de 220 km/h.",

@@ -8,15 +8,25 @@
 
 <body>
     <div id="questions-container"></div>
-    <div id="score-display"></div>
 
-    <div id="generator-container">
-        <div><input type="number" name="seed" id="generator-seed" value="0" min="0"/><label for="generator-seed">Seed (Si generas preguntas al azar con la misma seed siempre te saldrán las mismas)</label></div>
-        <div><input type="number" id="generator-questions" value="20" min="0"/><label for="generator-questions">Number of questions</label></div>
-        <div><input type="button" id="generator-button" value="Generate" onclick="generateQuestions()"/></div>
+    <div style="display:grid;grid-template-columns:1fr 3fr">
+        <div>
+            <div id="score-display"></div>
+            <button id="check-answers-button" onclick="checkAnswers()" hidden>Check all answers</button>
+        </div>
+
+
+        <div id="generator-container">
+            <div><input type="number" name="seed" id="generator-seed" value="0" min="0"/><label for="generator-seed">Seed (Si generas preguntas al azar con la misma seed siempre te saldrán las mismas)</label></div>
+            <div><input type="number" id="generator-questions" value="5" min="0"/><label for="generator-questions">Number of questions</label></div>
+            <div><input type="number" id="generator-q-start" value="0" min="0"/><label for="generator-q-start">Start from question</label></div>
+            <div><input type="button" id="generator-button" value="Generate more" onclick="generateQuestions()"/></div>
+        </div>
+
     </div>
+
     
-    <button id="check-answers-button" onclick="checkAnswers()" hidden>Check all answers</button>
+    
     
 </body>
 
@@ -43,7 +53,25 @@
         return array;
     }
 
-    async function loadRandomQuestions(n, seed) {
+    function appendQuestions(questions) {
+        for (let i = 0; i < questions.length; i++) {
+            const question = questions[i];
+            const questionElement = document.createElement("div");
+            questionElement.className = "question";
+            
+            questionElement.innerHTML = `
+                <fieldset data-correct_answer="${question.correct_answer}">
+                <legend>${question.id}</legend>
+                <div class="question-block">${question.q_text}</div>
+                ${['a', 'b', 'c', 'd'].map(option => `<div class="answer-option"><input type="radio" id="${question.id}-${option}" name="answers-${question.id}" value="${option}"><label for="${question.id}-${option}">${question['answer_' + option]}</label></div>`).join('\n')}
+                </fieldset>
+            `;
+            
+            document.getElementById("questions-container").appendChild(questionElement);
+        }
+    }
+
+    async function loadRandomQuestions(n, seed, q_start) {
         try {
             // Random timestamp so it doesn't cache it
             const response = await fetch(`./questions.json`);
@@ -54,24 +82,11 @@
             const randomGen = splitmix32(seed);
             let randomQuestions = shuffleArray(allQuestions, randomGen);
 
-            randomQuestions = randomQuestions.slice(0, n);
+            randomQuestions = randomQuestions.slice(q_start, q_start + n);
             randomQuestions.sort((a, b) => a.id > b.id);
-            
-            // Generate n questions
-            for (let i = 0; i < randomQuestions.length; i++) {
-                const question = randomQuestions[i];
-                const questionElement = document.createElement("div");
-                questionElement.className = "question";
 
-                questionElement.innerHTML = `
-                    <fieldset data-correct_answer="${question.correct_answer}">
-                    <legend>${question.id}</legend>
-                    <div class="question-block">${question.q_text}</div>
-                    ${['a', 'b', 'c', 'd'].map(option => `<div class="answer-option"><input type="radio" id="${question.id}-${option}" name="answers-${question.id}" value="${option}"><label for="${question.id}-${option}">${question['answer_' + option]}</label></div>`).join('\n')}
-                    </fieldset>
-                `;
-                document.getElementById("questions-container").appendChild(questionElement);
-            }
+            appendQuestions(randomQuestions);
+            
         } catch (e) {
             console.error("Could not fetch questions", e);
         }
@@ -137,38 +152,17 @@
 
     function generateQuestions() {
         // Get parameters
-        const seed = document.getElementById("generator-seed").value;
-        const n_questions = document.getElementById("generator-questions").value;
-
-        // Remove any previous questions
-        const q_container = document.getElementById("questions-container")
-        while (q_container.lastChild) q_container.removeChild(q_container.lastChild);
+        const seed = Number(document.getElementById("generator-seed").value);
+        const n_questions = Number(document.getElementById("generator-questions").value);
+        const q_start = Number(document.getElementById("generator-q-start").value);
 
         // Generate new questions
-        loadRandomQuestions(n_questions, seed);
+        loadRandomQuestions(n_questions, seed, q_start);
+
+        // Update the from question field
+        document.getElementById("generator-q-start").value = q_start + n_questions
 
         // Unhide the check answers button
         document.getElementById("check-answers-button").hidden = false;
-
-        // Reset seed
-        let seed_reminder = document.getElementById("seed-reminder");
-        if (!seed_reminder) {
-            seed_reminder = document.createElement("div");
-            seed_reminder.id = "seed-reminder";
-            seed_reminder.innerHTML = `Previous seed: <b id="previous-seed">${seed}</b>`;
-            const seed_node = document.getElementById("generator-seed");
-            seed_node.parentNode.insertBefore(seed_reminder, seed_node);
-        }
-        else {
-            document.getElementById("previous-seed").innerHTML = seed;
-        }
-
-        fillSeed();
     }
-    
-    function fillSeed() {
-        document.getElementById("generator-seed").value = `${(Math.random()*2**32)>>>0}`;
-    }
-    // Fill seed input with a random number
-    document.addEventListener("DOMContentLoaded", fillSeed);
 </script>
