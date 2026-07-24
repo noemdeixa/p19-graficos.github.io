@@ -18,8 +18,8 @@
 
         <div id="generator-container">
             <div><input type="number" name="seed" id="generator-seed" value="0" min="0"/><label for="generator-seed">Seed (Si generas preguntas al azar con la misma seed siempre te saldrán las mismas)</label></div>
-            <div><input type="number" id="generator-questions" value="5" min="0"/><label for="generator-questions">Number of questions</label></div>
-            <div><input type="number" id="generator-q-start" value="0" min="0"/><label for="generator-q-start">Start from question</label></div>
+            <div><input type="number" id="generator-questions" value="5" min="0"/><label for="generator-questions">Number of questions (A generar de la lista de preguntas mezclada usando la seed)</label></div>
+            <div><input type="number" id="generator-q-start" value="0" min="0"/><label for="generator-q-start">Start from question (Si quieres hacerte todas las preguntas que existen: usa la misma seed y apúntate desde qué pregunta retomar si te vas a tomar un descanso)</label></div>
             <div><input type="button" id="generator-button" value="Generate more" onclick="generateQuestions()"/></div>
         </div>
 
@@ -165,4 +165,10 @@
         // Unhide the check answers button
         document.getElementById("check-answers-button").hidden = false;
     }
+
+    function fillSeed() {
+        document.getElementById("generator-seed").value = `${(Math.random()*2**32)>>>0}`;
+    }
+    // Fill seed input with a random number
+    document.addEventListener("DOMContentLoaded", fillSeed);
 </script>
