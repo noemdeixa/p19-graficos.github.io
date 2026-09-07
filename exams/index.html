@@ -3,31 +3,27 @@
     <meta charset="UTF-8">
     <title>Pocholo</title>
     <link rel="icon" type="image/x-icon" href="./nico.webp">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=2">
 </head>
 
 <body>
-    <div id="questions-container"></div>
+    <main>
+        <div id="questions-container"></div>
 
-    <div style="display:grid;grid-template-columns:1fr 3fr">
-        <div>
-            <div id="score-display"></div>
-            <button id="check-answers-button" onclick="checkAnswers()" hidden>Check all answers</button>
-        </div>
+        <section id="quiz-controls" aria-label="Quiz controls">
+            <div id="score-panel">
+                <div id="score-display"></div>
+                <button id="check-answers-button" onclick="checkAnswers()" hidden>Check all answers</button>
+            </div>
 
-
-        <div id="generator-container">
+            <div id="generator-container">
             <div><input type="number" name="seed" id="generator-seed" value="0" min="0"/><label for="generator-seed">Seed (Si generas preguntas al azar con la misma seed siempre te saldrán las mismas)</label></div>
             <div><input type="number" id="generator-questions" value="5" min="0"/><label for="generator-questions">Number of questions (A generar de la lista de preguntas mezclada usando la seed)</label></div>
             <div><input type="number" id="generator-q-start" value="0" min="0"/><label for="generator-q-start">Start from question (Si quieres hacerte todas las preguntas que existen: usa la misma seed y apúntate desde qué pregunta retomar si te vas a tomar un descanso)</label></div>
             <div><input type="button" id="generator-button" value="Generate more" onclick="generateQuestions()"/></div>
-        </div>
-
-    </div>
-
-    
-    
-    
+            </div>
+        </section>
+    </main>
 </body>
 
 <script>
