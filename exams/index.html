@@ -59,7 +59,7 @@
                 <fieldset data-correct_answer="${question.correct_answer}">
                 <legend>${question.id}</legend>
                 <div class="question-block">${question.q_text}</div>
-                ${['a', 'b', 'c', 'd'].map(option => `<div class="answer-option"><input type="radio" id="${question.id}-${option}" name="answers-${question.id}" value="${option}"><label for="${question.id}-${option}">${question['answer_' + option]}</label></div>`).join('\n')}
+                ${['a', 'b', 'c', 'd'].map(option => `<label class="answer-option" for="${question.id}-${option}"><input type="radio" id="${question.id}-${option}" name="answers-${question.id}" value="${option}"><span>${question['answer_' + option]}</span></label>`).join('\n')}
                 </fieldset>
             `;
             
@@ -92,7 +92,7 @@
         var correct_n = 0;
         document.querySelectorAll("fieldset").forEach(fieldset => {
             const correct_answer = fieldset.dataset.correct_answer;
-            const selected_div = fieldset.querySelector('input:checked')?.parentNode;
+            const selected_div = fieldset.querySelector('input:checked')?.closest('.answer-option');
             
             // Reset
             fieldset.classList.remove("correct", "incorrect", "unselected");
@@ -110,7 +110,7 @@
                     const selected_answer = selected_div.querySelector("input").value;
 
                     // Mark the correct answer
-                    fieldset.querySelectorAll("div.answer-option").forEach(answerNode => {
+                    fieldset.querySelectorAll(".answer-option").forEach(answerNode => {
                         // Reset
                         answerNode.classList.remove("correct", "incorrect");
                         
