@@ -59,6 +59,8 @@ main { width: min(1120px, 100%); margin: 0 auto; position: relative; z-index: 1;
 .hero p { margin: 0; max-width: 680px; color: var(--muted); font-size: 1.02rem; }
 
 #questions-container { width: 100%; margin: 0 0 24px; }
+#print-answers { display: none; }
+
 .question { animation: rise .42s ease both; }
 
 fieldset {
@@ -125,8 +127,8 @@ fieldset.impugnada::before { content: "IMPUGNADA"; display:inline-flex; margin-b
 #generator-container input[type="number"] { width:100%; padding:12px 13px; border:1px solid rgba(255,255,255,.09); border-radius:12px; color:#fff !important; background:#080d18 !important; outline:none; }
 #generator-container input[type="number"]:focus { border-color:rgba(139,92,246,.7); box-shadow:0 0 0 4px rgba(139,92,246,.12); }
 
-#check-answers-button, #generator-button { width:100%; padding:13px 16px; border:0; border-radius:13px; color:#fff; background:linear-gradient(135deg,#7c3aed,#6366f1 55%,#06b6d4); font-weight:800; cursor:pointer; box-shadow:0 12px 30px rgba(99,102,241,.25); transition:.18s ease; }
-#check-answers-button:hover, #generator-button:hover { transform:translateY(-2px); box-shadow:0 18px 36px rgba(99,102,241,.32); filter:brightness(1.08); }
+#check-answers-button, #print-page-button, #generator-button { width:100%; padding:13px 16px; border:0; border-radius:13px; color:#fff; background:linear-gradient(135deg,#7c3aed,#6366f1 55%,#06b6d4); font-weight:800; cursor:pointer; box-shadow:0 12px 30px rgba(99,102,241,.25); transition:.18s ease; }
+#check-answers-button:hover, #print-page-button:hover, #generator-button:hover { transform:translateY(-2px); box-shadow:0 18px 36px rgba(99,102,241,.32); filter:brightness(1.08); }
 
 img { max-width:100%; height:auto; display:block; margin:20px auto; border-radius:16px; }
 ::selection { background:rgba(139,92,246,.4); color:#fff; }
@@ -139,4 +141,122 @@ img { max-width:100%; height:auto; display:block; margin:20px auto; border-radiu
     #generator-container { grid-template-columns:1fr; }
     #generator-container div:last-child { grid-column:auto; }
     fieldset { padding:18px; border-radius:19px; }
+}
+
+
+@media print {
+    @page { margin: 14mm; }
+
+    :root { color-scheme: light !important; }
+
+    html, body {
+        background: #fff !important;
+        color: #000 !important;
+    }
+
+    body {
+        padding: 0 !important;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.45;
+    }
+
+    body::after { display: none !important; }
+    main { width: 100% !important; max-width: none !important; }
+
+    #quiz-controls, #print-page-button, #check-answers-button {
+        display: none !important;
+    }
+
+    #questions-container { margin: 0 !important; }
+
+    #print-answers {
+        display: block !important;
+        break-before: page;
+        page-break-before: always;
+        color: #000 !important;
+        background: #fff !important;
+        padding-top: 8mm;
+    }
+
+    #print-answers h1 {
+        margin: 0 0 8mm;
+        font-size: 24pt;
+        color: #000 !important;
+    }
+
+    #print-answers-list {
+        color: #000 !important;
+    }
+
+    .print-answer-row {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        margin: 0 0 4mm;
+        color: #000 !important;
+        font-size: 11pt;
+    }
+
+    .question {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        animation: none !important;
+    }
+
+    fieldset {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        margin: 0 0 10mm !important;
+        padding: 5mm !important;
+        border: 1px solid #000 !important;
+        border-radius: 0 !important;
+        background: #fff !important;
+        box-shadow: none !important;
+        color: #000 !important;
+    }
+
+    legend, .question-block, .answer-option, .answer-option span {
+        color: #000 !important;
+        background: #fff !important;
+    }
+
+    legend {
+        border: 1px solid #000 !important;
+        border-radius: 0 !important;
+    }
+
+    .question-block { font-size: 1.05rem; }
+
+    .answer-option {
+        border: 0 !important;
+        border-radius: 0 !important;
+        padding: 2mm 0 !important;
+        margin: 0 !important;
+        transform: none !important;
+    }
+
+    .answer-option input[type="radio"] {
+        accent-color: #000;
+        appearance: auto;
+        width: auto;
+        height: auto;
+        border: 0;
+        background: transparent;
+    }
+
+    fieldset.correct, fieldset.incorrect, fieldset.unselected, fieldset.impugnada,
+    .answer-option.correct, .answer-option.incorrect {
+        border-color: #000 !important;
+        background: #fff !important;
+    }
+
+    fieldset.impugnada::before {
+        background: #fff !important;
+        color: #000 !important;
+        border: 1px solid #000;
+    }
+
+    img {
+        max-width: 100% !important;
+        border-radius: 0 !important;
+    }
 }

@@ -9,11 +9,16 @@
 <body>
     <main>
         <div id="questions-container"></div>
+        <section id="print-answers" aria-label="Answer key">
+            <h1>Answers</h1>
+            <div id="print-answers-list"></div>
+        </section>
 
         <section id="quiz-controls" aria-label="Quiz controls">
             <div id="score-panel">
                 <div id="score-display"></div>
                 <button id="check-answers-button" onclick="checkAnswers()" hidden>Check all answers</button>
+                <button id="print-page-button" type="button" onclick="window.print()">Print</button>
             </div>
 
             <div id="generator-container">
@@ -64,13 +69,22 @@
             `;
             
             document.getElementById("questions-container").appendChild(questionElement);
+
+            const answerRow = document.createElement("div");
+            answerRow.className = "print-answer-row";
+            const correctAnswer = question.correct_answer;
+            const answerText = correctAnswer && correctAnswer !== "null"
+                ? question["answer_" + correctAnswer]
+                : "Impugnada / sin respuesta correcta";
+            answerRow.innerHTML = `<strong>${question.id}.</strong> <span>${correctAnswer && correctAnswer !== "null" ? correctAnswer.toUpperCase() : "—"}</span> — ${answerText}`;
+            document.getElementById("print-answers-list").appendChild(answerRow);
         }
     }
 
     async function loadRandomQuestions(n, seed, q_start) {
         try {
             // Random timestamp so it doesn't cache it
-            const response = await fetch(`./questions.json`);
+            const response = await fetch(`./questions.json?v=2`);
 
             const allQuestions = await response.json();
 
