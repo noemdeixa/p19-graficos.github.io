@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <title>Pocholo</title>
     <link rel="icon" type="image/x-icon" href="./nico.webp">
-    <link rel="stylesheet" href="styles.css?v=2">
+    <link rel="stylesheet" href="styles.css?v=3">
 </head>
 
 <body>
@@ -120,7 +120,7 @@
     async function loadRandomQuestions(n, seed, q_start) {
         try {
             // Random timestamp so it doesn't cache it
-            const response = await fetch(`./questions.json?v=2`);
+            const response = await fetch(`./questions.json?v=3`);
 
             const allQuestions = await response.json();
 
