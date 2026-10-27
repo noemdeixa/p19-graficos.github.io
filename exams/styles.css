@@ -123,12 +123,13 @@ fieldset.impugnada::before { content: "IMPUGNADA"; display:inline-flex; margin-b
 #generator-container { padding:20px; display:grid; grid-template-columns:1fr 1fr; gap:14px; }
 #generator-container div { display:flex; flex-direction:column; gap:7px; margin:0; }
 #generator-container div:last-child { grid-column:1 / -1; margin-top:3px; }
+#generator-actions { flex-direction:row !important; gap:10px; }
 #generator-container label { color:var(--muted); font-size:.77rem; line-height:1.45; }
-#generator-container input[type="number"] { width:100%; padding:12px 13px; border:1px solid rgba(255,255,255,.09); border-radius:12px; color:#fff !important; background:#080d18 !important; outline:none; }
-#generator-container input[type="number"]:focus { border-color:rgba(139,92,246,.7); box-shadow:0 0 0 4px rgba(139,92,246,.12); }
+#generator-container input[type="number"], #generator-container input[type="text"] { width:100%; padding:12px 13px; border:1px solid rgba(255,255,255,.09); border-radius:12px; color:#fff !important; background:#080d18 !important; outline:none; }
+#generator-container input[type="number"]:focus, #generator-container input[type="text"]:focus { border-color:rgba(139,92,246,.7); box-shadow:0 0 0 4px rgba(139,92,246,.12); }
 
-#check-answers-button, #print-page-button, #generator-button { width:100%; padding:13px 16px; border:0; border-radius:13px; color:#fff; background:linear-gradient(135deg,#7c3aed,#6366f1 55%,#06b6d4); font-weight:800; cursor:pointer; box-shadow:0 12px 30px rgba(99,102,241,.25); transition:.18s ease; }
-#check-answers-button:hover, #print-page-button:hover, #generator-button:hover { transform:translateY(-2px); box-shadow:0 18px 36px rgba(99,102,241,.32); filter:brightness(1.08); }
+#check-answers-button, #print-page-button, #generator-button, #generator-exam-button { width:100%; padding:13px 16px; border:0; border-radius:13px; color:#fff; background:linear-gradient(135deg,#7c3aed,#6366f1 55%,#06b6d4); font-weight:800; cursor:pointer; box-shadow:0 12px 30px rgba(99,102,241,.25); transition:.18s ease; }
+#check-answers-button:hover, #print-page-button:hover, #generator-button:hover, #generator-exam-button:hover { transform:translateY(-2px); box-shadow:0 18px 36px rgba(99,102,241,.32); filter:brightness(1.08); }
 
 img { max-width:100%; height:auto; display:block; margin:20px auto; border-radius:16px; }
 ::selection { background:rgba(139,92,246,.4); color:#fff; }
@@ -188,12 +189,43 @@ img { max-width:100%; height:auto; display:block; margin:20px auto; border-radiu
         color: #000 !important;
     }
 
-    .print-answer-row {
+    #print-answers-table {
+        width: 100%;
+        table-layout: fixed;
+        border-collapse: collapse;
+        border-left: .6mm solid #555;
+        color: #000 !important;
+        font-size: 8pt;
+        line-height: 1.2;
+    }
+
+    #print-answers-table tr {
         break-inside: avoid;
         page-break-inside: avoid;
-        margin: 0 0 4mm;
-        color: #000 !important;
-        font-size: 11pt;
+    }
+
+    #print-answers-table th,
+    #print-answers-table td {
+        padding: 1mm;
+        border-top: .4mm solid #777;
+        border-bottom: .4mm solid #777;
+    }
+
+    #print-answers-table th:nth-child(even),
+    #print-answers-table td:nth-child(even) {
+        border-right: .6mm solid #555;
+    }
+
+    #print-answers-table th:nth-child(odd),
+    #print-answers-table td:nth-child(odd) {
+        width: 6%;
+        text-align: center;
+    }
+
+    #print-answers-table th:nth-child(even),
+    #print-answers-table td:nth-child(even) {
+        width: 14%;
+        text-align: center;
     }
 
     .question {

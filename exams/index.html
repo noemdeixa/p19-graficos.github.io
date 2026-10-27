@@ -11,7 +11,18 @@
         <div id="questions-container"></div>
         <section id="print-answers" aria-label="Answer key">
             <h1>Answers</h1>
-            <div id="print-answers-list"></div>
+            <table id="print-answers-table">
+                <thead>
+                    <tr>
+                        <th>Q</th><th>Answer</th>
+                        <th>Q</th><th>Answer</th>
+                        <th>Q</th><th>Answer</th>
+                        <th>Q</th><th>Answer</th>
+                        <th>Q</th><th>Answer</th>
+                    </tr>
+                </thead>
+                <tbody id="print-answers-list"></tbody>
+            </table>
         </section>
 
         <section id="quiz-controls" aria-label="Quiz controls">
@@ -22,10 +33,13 @@
             </div>
 
             <div id="generator-container">
-            <div><input type="number" name="seed" id="generator-seed" value="0" min="0"/><label for="generator-seed">Seed (Si generas preguntas al azar con la misma seed siempre te saldrán las mismas)</label></div>
+            <div><input type="text" name="seed" id="generator-seed" value="0"/><label for="generator-seed">Seed (Si generas preguntas al azar con la misma seed siempre te saldrán las mismas)</label></div>
             <div><input type="number" id="generator-questions" value="5" min="0"/><label for="generator-questions">Number of questions (A generar de la lista de preguntas mezclada usando la seed)</label></div>
             <div><input type="number" id="generator-q-start" value="0" min="0"/><label for="generator-q-start">Start from question (Si quieres hacerte todas las preguntas que existen: usa la misma seed y apúntate desde qué pregunta retomar si te vas a tomar un descanso)</label></div>
-            <div><input type="button" id="generator-button" value="Generate more" onclick="generateQuestions()"/></div>
+            <div id="generator-actions">
+                <input type="button" id="generator-button" value="Generate more" onclick="generateQuestions()"/>
+                <input type="button" id="generator-exam-button" value="Generate 85-question exam" onclick="generateExam()"/>
+            </div>
             </div>
         </section>
     </main>
@@ -44,6 +58,19 @@
         }
     }
 
+    function seedToNumber(seed) {
+        const numericSeed = Number(seed);
+        if (Number.isFinite(numericSeed)) {
+            return numericSeed;
+        }
+
+        let hash = 2166136261;
+        for (let i = 0; i < seed.length; i++) {
+            hash = Math.imul(hash ^ seed.charCodeAt(i), 16777619);
+        }
+        return hash >>> 0;
+    }
+
     function shuffleArray(array, randomGen) {
         for (let i = array.length - 1; i > 0; i--) {
             // Pick a random index from 0 to i
@@ -55,14 +82,16 @@
     }
 
     function appendQuestions(questions) {
+        const firstSequenceNumber = document.querySelectorAll("#questions-container .question").length + 1;
         for (let i = 0; i < questions.length; i++) {
             const question = questions[i];
+            const sequenceNumber = firstSequenceNumber + i;
             const questionElement = document.createElement("div");
             questionElement.className = "question";
             
             questionElement.innerHTML = `
                 <fieldset data-correct_answer="${question.correct_answer}">
-                <legend>${question.id}</legend>
+                <legend>(${sequenceNumber}) ${question.id}</legend>
                 <div class="question-block">${question.q_text}</div>
                 ${['a', 'b', 'c', 'd'].map(option => `<label class="answer-option" for="${question.id}-${option}"><input type="radio" id="${question.id}-${option}" name="answers-${question.id}" value="${option}"><span>${question['answer_' + option]}</span></label>`).join('\n')}
                 </fieldset>
@@ -70,14 +99,21 @@
             
             document.getElementById("questions-container").appendChild(questionElement);
 
-            const answerRow = document.createElement("div");
-            answerRow.className = "print-answer-row";
+            const answerTableBody = document.getElementById("print-answers-list");
+            const rowIndex = Math.floor((sequenceNumber - 1) / 5);
+            let answerRow = answerTableBody.rows[rowIndex];
+            if (!answerRow) {
+                answerRow = answerTableBody.insertRow();
+                for (let cellIndex = 0; cellIndex < 10; cellIndex++) {
+                    answerRow.insertCell();
+                }
+            }
+
+            const pairIndex = (sequenceNumber - 1) % 5;
+            answerRow.cells[pairIndex * 2].textContent = sequenceNumber;
             const correctAnswer = question.correct_answer;
-            const answerText = correctAnswer && correctAnswer !== "null"
-                ? question["answer_" + correctAnswer]
-                : "Impugnada / sin respuesta correcta";
-            answerRow.innerHTML = `<strong>${question.id}.</strong> <span>${correctAnswer && correctAnswer !== "null" ? correctAnswer.toUpperCase() : "—"}</span> — ${answerText}`;
-            document.getElementById("print-answers-list").appendChild(answerRow);
+            answerRow.cells[pairIndex * 2 + 1].textContent =
+                correctAnswer && correctAnswer !== "null" ? correctAnswer.toUpperCase() : "—";
         }
     }
 
@@ -162,7 +198,7 @@
 
     function generateQuestions() {
         // Get parameters
-        const seed = Number(document.getElementById("generator-seed").value);
+        const seed = seedToNumber(document.getElementById("generator-seed").value);
         const n_questions = Number(document.getElementById("generator-questions").value);
         const q_start = Number(document.getElementById("generator-q-start").value);
 
@@ -174,6 +210,35 @@
 
         // Unhide the check answers button
         document.getElementById("check-answers-button").hidden = false;
+    }
+
+    async function generateExam() {
+        const seed = seedToNumber(document.getElementById("generator-seed").value);
+
+        try {
+            const response = await fetch("./questions.json?v=2");
+            const allQuestions = await response.json();
+            const randomGen = splitmix32(seed);
+            const part1Numbers = Array.from({ length: 60 }, (_, index) => index + 1);
+
+            const part2Numbers = Array.from({ length: 20 }, (_, index) => index + 61);
+
+            const part3Numbers = [81, 82, 83];
+            const part4Numbers = [84, 85];
+
+            const parts = [part1Numbers, part2Numbers, part3Numbers, part4Numbers];
+            const examQuestions = []
+
+            parts.map(part => {
+                const candidates = allQuestions.filter(q => part.includes(q.q_number));
+                examQuestions.push(...shuffleArray(candidates, randomGen).slice(0, part.length));
+            });
+
+            appendQuestions(examQuestions);
+            document.getElementById("check-answers-button").hidden = false;
+        } catch (e) {
+            console.error("Could not generate exam questions", e);
+        }
     }
 
     function fillSeed() {
